@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import { BOARD_SIZE } from '@/components/Board/constants';
+import { isCanvasSupported } from '@/utils/helpers';
 import {
   UPDATE_GAME,
   UPDATE_STATUS,
@@ -7,12 +8,15 @@ import {
   BLACK,
   WHITE,
   GAME_STATUS_START,
+  CANVAS,
+  DOM,
 } from './constants';
 
 const initialState = fromJS({
   board: initialListArray(),
   currentRole: BLACK,
   gameStatus: GAME_STATUS_START,
+  mode: isCanvasSupported() ? CANVAS : DOM,
 });
 
 function initialListArray() {

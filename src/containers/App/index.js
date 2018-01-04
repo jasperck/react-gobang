@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   board: state.getIn(['app', 'board']),
   currentRole: state.getIn(['app', 'currentRole']),
   status: state.getIn(['app', 'gameStatus']),
+  mode: state.getIn(['app', 'mode']),
 })
 
 const mapDispatchToProps = (dispatch) => ({

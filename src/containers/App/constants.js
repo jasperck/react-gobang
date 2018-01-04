@@ -27,3 +27,9 @@ export const roleMaps = {
  */
 export const GAME_STATUS_STOP = 0;
 export const GAME_STATUS_START = 1;
+
+/**
+ * RENDER MODE
+ */
+export const CANVAS = 'canvas';
+export const DOM = 'dom';
