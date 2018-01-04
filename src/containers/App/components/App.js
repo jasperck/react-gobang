@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from '@/components/Board';
+import Helmet from '@/components/Helmet';
 import { BOARD_CELL_SIZE } from '@/components/Board/constants';
 import referee from '@/utils/referee';
 import Wrapper from './Wrapper';
@@ -68,6 +69,7 @@ class App extends Component {
 
     return (
       <Wrapper>
+        <Helmet />
         <Board
           board={board}
           setBoardRef={this.setBoardRef}
