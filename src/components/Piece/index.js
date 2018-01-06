@@ -1,12 +1,7 @@
-import React from 'react';
-import Wrapper from './Wrapper';
+import { isCanvasSupported } from '@/utils/helpers';
+import Canvas from './canvas';
+import DOM from './dom';
 
-const Piece = ({ x, y, role }) => (
-  <Wrapper
-    left={x}
-    top={y}
-    role={role}
-  />
-);
+const Piece = isCanvasSupported() ? Canvas : DOM;
 
 export default Piece;
