@@ -1,19 +1,7 @@
-import React from 'react';
-import shortid from 'shortid';
-import Wrapper from './Wrapper';
-import Node from './Node';
+import { isCanvasSupported } from '@/utils/helpers';
+import Canvas from './canvas';
+import Dom from './dom';
 
-const Board = ({ board, handleOnClick, setBoardRef, children }) => (
-  <Wrapper onClick={handleOnClick} innerRef={setBoardRef}>
-    {
-      board.map((col) => (
-        col.map((c) => (
-          <Node key={shortid.generate()} />
-        ))
-      ))
-    }
-    {children}
-  </Wrapper>
-);
+const Board = isCanvasSupported() ? Canvas : Dom;
 
 export default Board;
