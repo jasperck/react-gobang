@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from '@/components/Board';
 import Helmet from '@/components/Helmet';
+import Elapsed from '@/components/Elapsed';
 import { BOARD_CELL_SIZE } from '@/components/Board/constants';
 import referee from '@/utils/referee';
 import Wrapper from './Wrapper';
@@ -61,7 +62,7 @@ class App extends Component {
   }
 
   render() {
-    const { board, pieces } = this.props;
+    const { board, status} = this.props;
 
     if (!board) {
       return null;
@@ -80,6 +81,7 @@ class App extends Component {
             boardRef={this.boardRef}
           />
         </Board>
+        <Elapsed status={status} />
       </Wrapper>
     );
   }
