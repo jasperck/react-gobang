@@ -50,7 +50,7 @@ class App extends Component {
       if (judgement === GAME_STATUS_STOP) {
         this.props.updateStatus(GAME_STATUS_STOP)
 
-        alert(`${roleMaps[currentRole]} win!`);
+        setTimeout(() => alert(`${roleMaps[currentRole]} win!`), 0);
       }
     }
   }
@@ -75,7 +75,10 @@ class App extends Component {
           setBoardRef={this.setBoardRef}
           handleOnClick={this.handleOnclick}
         >
-          <Pieces board={board} />
+          <Pieces
+            board={board}
+            boardRef={this.boardRef}
+          />
         </Board>
       </Wrapper>
     );
