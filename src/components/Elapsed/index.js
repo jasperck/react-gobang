@@ -1,33 +1,31 @@
 import React, { PureComponent } from 'react';
 import Moment from 'react-moment';
-import styled from 'styled-components';
-import { GAME_STATUS_STOP } from '@/containers/App/constants';
-
-const Wrapper = styled(Moment) `
-  display: flex;
-  margin: 35px 35px 0 0;
-  font-size: 40px;
-  position: relative;
-  height: 45px;
-`;
+import {
+  GAME_STATUS_START,
+  GAME_STATUS_STOP,
+  GAME_STATUS_FINISH,
+} from '@/containers/App/constants';
 
 class Elapsed extends PureComponent {
   state = {
     elapsed: 0,
-    startTime: Date.now(),
+    startTime: 0,
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => (
-      this.setState({ elapsed: Date.now() - this.state.startTime })
-    ), 1000);
+    if (this.props.status === GAME_STATUS_START) {
+      this.tick();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.status === GAME_STATUS_STOP) {
-      if (this.timer) {
-        clearInterval(this.timer);
-      }
+    const { status } = nextProps;
+    if (status !== this.props.status && status === GAME_STATUS_START) {
+      this.tick();
+    }
+
+    if (this.timer && (status === GAME_STATUS_STOP || status === GAME_STATUS_FINISH)) {
+      clearInterval(this.timer);
     }
   }
 
@@ -37,13 +35,23 @@ class Elapsed extends PureComponent {
     }
   }
 
+  tick() {
+    this.setState({
+      startTime: Date.now(),
+    }, () => (
+      this.timer = setInterval(() => (
+        this.setState({ elapsed: Date.now() - this.state.startTime })
+      ), 1000)
+    ))
+  }
+
   render() {
     const { elapsed } = this.state;
 
     return (
-      <Wrapper format="mm:ss">
+      <Moment format="mm:ss">
         {elapsed}
-      </Wrapper>
+      </Moment>
     );
   }
 }

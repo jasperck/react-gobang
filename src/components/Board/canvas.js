@@ -19,21 +19,28 @@ const Canvas = styled.canvas`
 
 class Board extends PureComponent {
   componentDidMount() {
-    this.context = this.canvas.getContext('2d');
+    this.draw();
+  }
+
+  componentWillUpdate() {
+    const ctx = this.canvas.getContext('2d');
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.draw();
   }
 
   draw = () => {
+    const ctx = this.canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeStyle = '#000000';
     Array.from(Array(BOARD_SIZE)).forEach((v, i) => {
-      this.context.beginPath();
-      this.context.moveTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE);
-      this.context.lineTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE * BOARD_SIZE);
-      this.context.stroke();
-      this.context.moveTo(BOARD_CELL_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
-      this.context.lineTo(BOARD_CELL_SIZE * BOARD_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
-      this.context.stroke();
-      this.context.closePath();
+      ctx.moveTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE);
+      ctx.lineTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE * BOARD_SIZE);
+      ctx.stroke();
+      ctx.moveTo(BOARD_CELL_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
+      ctx.lineTo(BOARD_CELL_SIZE * BOARD_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
+      ctx.stroke();
     });
+    ctx.closePath();
   }
 
   setCanvasRef = ref => {
@@ -48,8 +55,8 @@ class Board extends PureComponent {
       <Wrapper>
         <Canvas
           innerRef={this.setCanvasRef}
-          width={BOARD_CELL_SIZE * BOARD_SIZE + 40}
-          height={BOARD_CELL_SIZE * BOARD_SIZE + 40}
+          width={BOARD_CELL_SIZE * BOARD_SIZE + BOARD_CELL_SIZE}
+          height={BOARD_CELL_SIZE * BOARD_SIZE + BOARD_CELL_SIZE}
           onClick={handleOnClick}
         >
           {children}

@@ -1,22 +1,19 @@
 import { fromJS } from 'immutable';
 import { BOARD_SIZE } from '@/components/Board/constants';
-import { isCanvasSupported } from '@/utils/helpers';
 import {
   UPDATE_GAME,
   UPDATE_STATUS,
   EMPTY,
   BLACK,
   WHITE,
-  GAME_STATUS_START,
-  CANVAS,
-  DOM,
+  GAME_STATUS_STOP,
+  NEW_GAME,
 } from './constants';
 
 const initialState = fromJS({
   board: initialListArray(),
   currentRole: BLACK,
-  gameStatus: GAME_STATUS_START,
-  mode: isCanvasSupported() ? CANVAS : DOM,
+  gameStatus: GAME_STATUS_STOP,
 });
 
 function initialListArray() {
@@ -44,6 +41,11 @@ const AppReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case NEW_GAME:
+      return state
+        .set('board', initialState.get('board'))
+        .set('currentRole', initialState.get('currentRole'))
+        .set('gameStatus', initialState.get('gameStatus'));
     case UPDATE_GAME:
       const { cell, ...newPiece } = payload;
 

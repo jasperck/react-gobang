@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import Board from '@/components/Board';
 import Helmet from '@/components/Helmet';
-import Elapsed from '@/components/Elapsed';
 import referee from '@/utils/referee';
 import { getCellCoordinate, getCellPosition } from '@/utils/helpers';
 import Wrapper from './Wrapper';
 import Pieces from './Pieces';
+import Aside from './Aside';
 import {
   roleMaps,
   GAME_STATUS_STOP,
+  GAME_STATUS_FINISH,
 } from '../constants';
 
 class App extends Component {
   handleOnclick = (e) => {
-    if (this.props.status === GAME_STATUS_STOP) {
+    const { status } = this.props;
+
+    if (status === GAME_STATUS_STOP || status === GAME_STATUS_FINISH) {
       return;
     }
 
@@ -45,7 +48,7 @@ class App extends Component {
       const judgement = referee(role, ...cell)(board);
 
       if (judgement === GAME_STATUS_STOP) {
-        this.props.updateStatus(GAME_STATUS_STOP)
+        this.props.updateStatus(GAME_STATUS_FINISH)
 
         setTimeout(() => alert(`${roleMaps[role]} win!`), 0);
       }
@@ -57,8 +60,18 @@ class App extends Component {
     this.rect = this.boardRef.getBoundingClientRect();
   }
 
+  handleNewGameOnClick = () => {
+    this.props.newGame();
+  }
+
+  handleStartGameOnClick = () => {
+    if (this.props.status === GAME_STATUS_STOP) {
+      this.props.startGame();
+    }
+  }
+
   render() {
-    const { board, status} = this.props;
+    const { board, status } = this.props;
 
     if (!board) {
       return null;
@@ -77,7 +90,11 @@ class App extends Component {
             boardRef={this.boardRef}
           />
         </Board>
-        <Elapsed status={status} />
+        <Aside
+          status={status}
+          handleStartGameOnClick={this.handleStartGameOnClick}
+          handleNewGameOnClick={this.handleNewGameOnClick}
+        />
       </Wrapper>
     );
   }
