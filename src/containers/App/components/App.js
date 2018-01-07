@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Board from '@/components/Board';
 import Helmet from '@/components/Helmet';
 import Elapsed from '@/components/Elapsed';
-import { BOARD_CELL_SIZE } from '@/components/Board/constants';
 import referee from '@/utils/referee';
+import { getCellCoordinate, getCellPosition } from '@/utils/helpers';
 import Wrapper from './Wrapper';
 import Pieces from './Pieces';
 import {
@@ -21,19 +21,15 @@ class App extends Component {
       /**
        * get piece position
        */
-      const { currentRole } = this.props;
-      const { clientX, clientY } = e;
-      const { left, top } = this.rect;
-      const cellX = Math.round((clientX - left) / BOARD_CELL_SIZE);
-      const cellY = Math.round((clientY - top) / BOARD_CELL_SIZE)
-      const x = (cellX * BOARD_CELL_SIZE) - (BOARD_CELL_SIZE / 2);
-      const y = (cellY * BOARD_CELL_SIZE) - (BOARD_CELL_SIZE / 2);
-      const cell = [cellX, cellY]
+      const { currentRole: role } = this.props;
+      const { x: coordinateX, y: coordinateY } = getCellCoordinate(e, this.rect);
+      const { x, y } = getCellPosition(coordinateX, coordinateY);
+      const cell = [coordinateX, coordinateY];
       const play = {
-        cell,
-        role: currentRole,
         x,
         y,
+        cell,
+        role,
       };
       
       /**
@@ -46,12 +42,12 @@ class App extends Component {
        */
       const { board } = this.props;
 
-      const judgement = referee(currentRole, ...cell)(board);
+      const judgement = referee(role, ...cell)(board);
 
       if (judgement === GAME_STATUS_STOP) {
         this.props.updateStatus(GAME_STATUS_STOP)
 
-        setTimeout(() => alert(`${roleMaps[currentRole]} win!`), 0);
+        setTimeout(() => alert(`${roleMaps[role]} win!`), 0);
       }
     }
   }
