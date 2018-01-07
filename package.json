@@ -3,10 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "description": "Gobang built with React, Redux, Immutable.js.",
+  "homepage": "https://jasperck.github.io/react-gobang",
   "repository": {
     "type": "git",
     "url": "git@github.com:jasperck/react-gobang.git"
   },
+  "main": "public/index.html",
   "author": "Jasper Chang",
   "license": "MIT",
   "dependencies": {
@@ -32,7 +34,9 @@
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts --ignore-pattern flow-typed",
     "lint:stylelint": "stylelint",
     "lint:js": "npm run lint:eslint -- . ",
-    "lint:css": "npm run lint:stylelint -- \"src/**/components/**/*.js\""
+    "lint:css": "npm run lint:stylelint -- \"src/**/components/**/*.js\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "*.js": "lint:eslint",
@@ -96,6 +100,7 @@
     "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "jest-serializer-html-string": "^1.0.1",
