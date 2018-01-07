@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BLACK } from '@/containers/App/constants';
-import { PIECE_SIZE, COLOR_BLACK, COLOR_WHITE } from './constants';
+import {
+  PIECE_SIZE,
+  COLOR_BLACK,
+  COLOR_WHITE,
+} from '@/constants';
 
 const Wrapper = styled.div`
   position: absolute;

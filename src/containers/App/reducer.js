@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { BOARD_SIZE } from '@/components/Board/constants';
+import { BOARD_SIZE } from '@/constants';
 import {
   UPDATE_GAME,
   UPDATE_STATUS,

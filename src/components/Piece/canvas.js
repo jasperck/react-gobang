@@ -4,7 +4,7 @@ import {
   COLOR_WHITE,
   COLOR_GREY,
   PIECE_SIZE,
-} from './constants';
+} from '@/constants';
 
 const radius = PIECE_SIZE / 2;
 

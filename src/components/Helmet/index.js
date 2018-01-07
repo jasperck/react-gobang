@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactHelmet from 'react-helmet';
-import { TITLE, DESCRIPTION } from './constants';
+import {
+  TITLE,
+  DESCRIPTION,
+} from '@/constants';
 
 const Helmet = ({
   title = TITLE,

@@ -1,4 +1,4 @@
-import { BOARD_CELL_SIZE } from '@/components/Board/constants';
+import { BOARD_CELL_SIZE } from '@/constants';
 
 /**
  * isCanvasSupported

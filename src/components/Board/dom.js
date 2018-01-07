@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import {
   BOARD_SIZE,
   BOARD_CELL_SIZE,
-} from './constants';
+} from '@/constants';
 
 const Wrapper = styled.div`
   display: flex;

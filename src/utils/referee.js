@@ -1,4 +1,4 @@
-import { BOARD_SIZE } from '@/components/Board/constants';
+import { BOARD_SIZE } from '@/constants';
 import {
   GAME_STATUS_STOP,
   GAME_STATUS_START,

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   BOARD_SIZE,
   BOARD_CELL_SIZE,
-} from './constants';
+} from '@/constants';
 
 const Wrapper = styled.div`
   display: flex;

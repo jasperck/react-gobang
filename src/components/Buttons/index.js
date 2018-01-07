@@ -1,10 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { BUTTON_COLOR_GREEN } from './constants';
+import {
+  COLOR_WHITE,
+  COLOR_GREEN,
+  COLOR_BLUE,
+} from '@/constants';
 
 const button = css`
   width: 130px;
-  background-color: #FFFFFF;
+  background-color: ${COLOR_WHITE};
   text-align: center;
   height: 40px;
   border-radius: 20px;
@@ -14,24 +18,26 @@ const button = css`
   font-size: 20px;
 
   &:hover {
-    color: #FFFFFF;
+    color: ${COLOR_WHITE};
   }
 `;
+
 const StartBtn = styled.button`
   ${button};
-  border: 2px solid ${BUTTON_COLOR_GREEN};
-  color: ${BUTTON_COLOR_GREEN};
+  border: 2px solid ${COLOR_GREEN};
+  color: ${COLOR_GREEN};
   &:hover {
-    background-color: ${BUTTON_COLOR_GREEN};
+    background-color: ${COLOR_GREEN};
   }
   cursor: ${props => (props.disable ? 'not-allowed' : 'cursor')};
 `;
+
 const ResetBtn = styled.button`
   ${button};
-  border: 2px solid #69aff6;
-  color: #69aff6;
+  border: 2px solid ${COLOR_BLUE};
+  color: ${COLOR_BLUE};
   &:hover {
-    background-color: #69aff6;
+    background-color: ${COLOR_BLUE};
   }
 `;
 
