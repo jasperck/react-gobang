@@ -60,6 +60,7 @@ const referee = (role, x, y) => {
     /**
      * check - diagonal
      */
+    // eslint-disable-next-line no-sequences
     for (let i = x - 1, j = y - 1; i >= 0, j >= 0; i--, j--) {
       if (!isSameRole(board.getIn([i, j, 'role']), role)) {
         break;
@@ -67,6 +68,7 @@ const referee = (role, x, y) => {
       counters[LEFT_DIAGONAL] += 1;
     }
 
+    // eslint-disable-next-line no-sequences
     for (let i = x + 1, j = y + 1; i < BOARD_SIZE, j < BOARD_SIZE; i++, j++) {
       if (!isSameRole(board.getIn([i, j, 'role']), role)) {
         break;
@@ -77,6 +79,7 @@ const referee = (role, x, y) => {
     /**
      * check + diagonal
      */
+    // eslint-disable-next-line no-sequences
     for (let i = x + 1, j = y - 1; i < BOARD_SIZE, j >= 0; i++, j--) {
       if (!isSameRole(board.getIn([i, j, 'role']), role)) {
         break;
@@ -84,6 +87,7 @@ const referee = (role, x, y) => {
       counters[RIGHT_DIAGONAL] += 1;
     }
 
+    // eslint-disable-next-line no-sequences
     for (let i = x - 1, j = y + 1; i >= 0, j < BOARD_SIZE; i--, j++) {
       if (!isSameRole(board.getIn([i, j, 'role']), role)) {
         break;

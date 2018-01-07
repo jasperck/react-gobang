@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux-immutable';
-import { fromJS } from 'immutable';
 import AppReducer from '@/containers/App/reducer';
 
 /**

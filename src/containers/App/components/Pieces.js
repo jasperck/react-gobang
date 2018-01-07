@@ -1,4 +1,3 @@
-import React from 'react';
 import shortid from 'shortid';
 import Piece from '@/components/Piece';
 import { EMPTY } from '@/containers/App/constants';

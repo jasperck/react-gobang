@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, compose } from 'redux';
 import Immutable, { fromJS } from 'immutable';
 import createReducer from './reducers';
 
