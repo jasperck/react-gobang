@@ -32,12 +32,12 @@ class Board extends PureComponent {
     const ctx = this.canvas.getContext('2d');
     ctx.beginPath();
     ctx.strokeStyle = '#000000';
-    Array.from(Array(BOARD_SIZE)).forEach((v, i) => {
-      ctx.moveTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE);
-      ctx.lineTo(BOARD_CELL_SIZE + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE * BOARD_SIZE);
+    Array.from(Array(BOARD_SIZE + 1)).forEach((v, i) => {
+      ctx.moveTo(20 + i * BOARD_CELL_SIZE, 20);
+      ctx.lineTo(20 + i * BOARD_CELL_SIZE, BOARD_CELL_SIZE * BOARD_SIZE + 20);
       ctx.stroke();
-      ctx.moveTo(BOARD_CELL_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
-      ctx.lineTo(BOARD_CELL_SIZE * BOARD_SIZE, BOARD_CELL_SIZE + i * BOARD_CELL_SIZE);
+      ctx.moveTo(20, 20 + i * BOARD_CELL_SIZE);
+      ctx.lineTo(BOARD_CELL_SIZE * BOARD_SIZE + 20, 20 + i * BOARD_CELL_SIZE);
       ctx.stroke();
     });
     ctx.closePath();

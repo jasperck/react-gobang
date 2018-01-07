@@ -1,7 +1,7 @@
 import { BOARD_SIZE } from '@/constants';
 import {
-  GAME_STATUS_STOP,
   GAME_STATUS_START,
+  GAME_STATUS_FINISH,
 } from '@/containers/App/constants';
 import {
   HORIZONTAL,
@@ -99,7 +99,7 @@ const referee = (role, x, y) => {
 
     Object.keys(counters).forEach(dim => {
       if (counters[dim] >= 5) {
-        judgement = GAME_STATUS_STOP;
+        judgement = GAME_STATUS_FINISH;
       }
     });
 

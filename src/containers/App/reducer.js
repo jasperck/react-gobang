@@ -18,17 +18,17 @@ const initialState = fromJS({
 
 function initialListArray() {
   let listArray = [];
-  for (let i = 0; i <= BOARD_SIZE; i++) {
+  Array.from(Array(BOARD_SIZE + 1)).forEach((i) => {
     let subList = [];
-    for (var j = 0; j <= BOARD_SIZE; j++) {
+    Array.from(Array(BOARD_SIZE + 1)).forEach((j) => (
       subList.push(fromJS({
         x: 0,
         y: 0,
         role: EMPTY,
-      }));
-    }
+      }))
+    ));
     listArray.push(subList);
-  }
+  });
 
   return listArray;
 }

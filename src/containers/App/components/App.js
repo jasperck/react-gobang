@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Board from '@/components/Board';
 import Helmet from '@/components/Helmet';
 import referee from '@/utils/referee';
-import { getCellCoordinate, getCellPosition } from '@/utils/helpers';
+import {
+  getCellCoordinate,
+  getCellPosition,
+} from '@/utils/helpers';
 import Wrapper from './Wrapper';
 import Pieces from './Pieces';
 import Aside from './Aside';
@@ -12,7 +15,7 @@ import {
   GAME_STATUS_FINISH,
 } from '../constants';
 
-class App extends Component {
+class App extends PureComponent {
   handleOnclick = (e) => {
     const { status } = this.props;
 
@@ -43,14 +46,8 @@ class App extends Component {
       /**
        * judge win
        */
-      const { board } = this.props;
-
-      const judgement = referee(role, ...cell)(board);
-
-      if (judgement === GAME_STATUS_STOP) {
-        this.props.updateStatus(GAME_STATUS_FINISH)
-
-        setTimeout(() => alert(`${roleMaps[role]} win!`), 0);
+      if (this.shouldGameFinish(role, cell)) {
+        this.handleGameFinish(role);
       }
     }
   }
@@ -58,6 +55,16 @@ class App extends Component {
   setBoardRef = (board) => {
     this.boardRef = board;
     this.rect = this.boardRef.getBoundingClientRect();
+  }
+
+  shouldGameFinish = (role, cell) => {
+    return referee(role, ...cell)(this.props.board) === GAME_STATUS_FINISH;
+  }
+
+  handleGameFinish = (role) => {
+    this.props.updateStatus(GAME_STATUS_FINISH);
+
+    setTimeout(() => alert(`${roleMaps[role]} win!`), 0);
   }
 
   handleNewGameOnClick = () => {

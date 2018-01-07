@@ -16,7 +16,7 @@ const Piece = ({ boardRef, role, x, y }) => {
 
   // draw circle
   context.beginPath();
-  context.arc(x + radius, y + radius, radius, 0, 2 * Math.PI, true);
+  context.arc(x, y, radius, 0, 2 * Math.PI, true);
   context.closePath();
 
   // fill color

@@ -30,8 +30,8 @@ const Wrapper = styled.div`
 const Piece = ({ x, y, role, key }) => (
   <Wrapper
     key={key}
-    left={x}
-    top={y}
+    left={x - (PIECE_SIZE / 2)}
+    top={y - (PIECE_SIZE / 2)}
     role={role}
   />
 );
