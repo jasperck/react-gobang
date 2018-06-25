@@ -36,7 +36,8 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:css": "npm run lint:stylelint -- \"src/**/components/**/*.js\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "bundlesize": "bundlesize"
   },
   "bundlesize": [
     {
