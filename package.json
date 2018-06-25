@@ -38,6 +38,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "bundlesize": [
+    {
+      "path": "./build/**/*.js",
+      "maxSize": "90kb"
+    }
+  ],
   "lint-staged": {
     "*.js": "lint:eslint",
     "app/**/components/**/*.js": "lint:stylelint"
@@ -89,6 +95,7 @@
     "babel-preset-react-app": "^3.1.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "6.26.0",
+    "bundlesize": "^0.17.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "css-loader": "0.28.7",
     "eslint": "4.10.0",
