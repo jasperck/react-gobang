@@ -73,6 +73,13 @@ jobs:
       - run:
           name: bundlesize
           command: yarn bundlesize
+  danger:
+    <<: *docker_default
+    steps:
+      - *attach_workspace
+      - *restore_node_modules
+      - *restore_build
+      - run: yarn danger ci
 
 workflows:
   version: 2
@@ -85,7 +92,6 @@ workflows:
       - build:
           requires:
             - bootstrap
-      - bundlesize:
+      - danger:
           requires:
-            - test
             - build
