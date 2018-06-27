@@ -79,6 +79,8 @@ jobs:
       - *attach_workspace
       - *restore_node_modules
       - *restore_build
+      - store_artifacts:
+          path: ./build/manifest.json
       - run: yarn danger ci
 
 workflows:
