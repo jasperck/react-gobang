@@ -13,7 +13,7 @@ references:
   yarn_cache_key: &yarn_cache_key
     v2-yarn-cache-{{ checksum "yarn.lock" }}
   build_cache_key: &build_cache_key
-    build-cache-{{ checksum "version.json" }}
+    build-cache-{{ checksum "package.json" }}
   restore_node_modules: &restore_node_modules
     restore_cache:
       key: *yarn_cache_key
